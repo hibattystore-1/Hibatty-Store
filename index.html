@@ -1,119 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hibatty Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    body{
-      margin:0;
-      font-family:Georgia, serif;
-      background:#f7f3ef;
-      color:#2d2d2d;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .hero{
-      text-align:center;
-      padding:80px 20px 50px;
+    body {
+      background: #f8f4ef;
+      color: #2f2a27;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
     }
 
-    .hero h1{
-      font-size:52px;
-      letter-spacing:6px;
-      margin-bottom:10px;
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 8%;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 
-    .hero p{
-      color:#7a7a7a;
-      font-size:18px;
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      letter-spacing: 4px;
+      font-weight: 600;
     }
 
-    .products{
-      display:flex;
-      justify-content:center;
-      gap:30px;
-      flex-wrap:wrap;
-      padding:20px 30px 80px;
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    .card{
-      background:white;
-      border-radius:24px;
-      overflow:hidden;
-      width:280px;
-      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    .nav-links a {
+      text-decoration: none;
+      color: #3f3a36;
     }
 
-    .card img{
-      width:100%;
-      height:340px;
-      object-fit:cover;
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      align-items: center;
+      padding: 60px 8%;
+      gap: 40px;
     }
 
-    .card-content{
-      padding:20px;
+    .hero-text h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(56px, 8vw, 96px);
+      line-height: 0.95;
+      font-weight: 600;
+      margin-bottom: 24px;
     }
 
-    .card h3{
-      font-size:24px;
-      margin-bottom:8px;
+    .hero-text p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #6d655f;
+      max-width: 520px;
+      margin-bottom: 32px;
     }
 
-    .price{
-      color:#8a8a8a;
-      margin-bottom:18px;
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    button{
-      width:100%;
-      padding:12px;
-      border:none;
-      border-radius:30px;
-      background:#1f1f1f;
-      color:white;
-      font-size:15px;
+    .btn {
+      padding: 14px 30px;
+      border-radius: 40px;
+      border: none;
+      font-size: 14px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn-dark {
+      background: #1f1b18;
+      color: white;
+    }
+
+    .btn-light {
+      background: white;
+      color: #1f1b18;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-image img {
+      width: 100%;
+      border-radius: 32px;
+      object-fit: cover;
+      height: 760px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 56px;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #786f68;
+      letter-spacing: 1px;
+    }
+
+    .products {
+      padding: 100px 8%;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      transition: 0.35s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 24px;
+    }
+
+    .card-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #9a8e84;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    .add-btn {
+      width: 100%;
+      border: none;
+      border-radius: 40px;
+      padding: 14px;
+      background: #1f1b18;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .banner {
+      margin: 40px 8% 100px;
+      border-radius: 36px;
+      background: linear-gradient(135deg,#ded2c8,#f7f3ef);
+      padding: 80px 10%;
+      text-align: center;
+    }
+
+    .banner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px,6vw,72px);
+      margin-bottom: 16px;
+    }
+
+    .banner p {
+      color: #5f5853;
+      font-size: 18px;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.7;
+    }
+
+    footer {
+      padding: 60px 8%;
+      text-align: center;
+      color: #7d736d;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    @media(max-width:768px) {
+      nav {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .hero-image img {
+        height: 500px;
+      }
+
+      .section-title h2 {
+        font-size: 42px;
+      }
     }
   </style>
 </head>
-
 <body>
 
-<div class="hero">
-  <h1>HIBATTY STORE</h1>
-  <p>Soft Modesty • Timeless Elegance</p>
-</div>
+  <nav>
+    <div class="logo">HIBATTY</div>
 
-<div class="products">
-
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1583391733981-849c1f2c4e6d?q=80&w=1200&auto=format&fit=crop">
-    <div class="card-content">
-      <h3>Sage Abaya</h3>
-      <p class="price">₹2499</p>
-      <button>Add to Cart</button>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Abayas</a>
+      <a href="#">Hijabs</a>
+      <a href="#">Bridal</a>
+      <a href="#">Cart</a>
     </div>
-  </div>
+  </nav>
 
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop">
-    <div class="card-content">
-      <h3>Powder Blue Hijab</h3>
-      <p class="price">₹499</p>
-      <button>Add to Cart</button>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Soft Modesty<br>Timeless Elegance</h1>
+
+      <p>
+        Discover luxurious abayas, jilbabs, niqabs and hijabs designed in elegant pastel tones for everyday sophistication and bridal beauty.
+      </p>
+
+      <div class="hero-btns">
+        <button class="btn btn-dark">Shop Collection</button>
+        <button class="btn btn-light">Irmas Collection</button>
+      </div>
     </div>
-  </div>
 
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop">
-    <div class="card-content">
-      <h3>Ivory Jilbab</h3>
-      <p class="price">₹2999</p>
-      <button>Add to Cart</button>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop" alt="Luxury Fashion">
     </div>
-  </div>
+  </section>
 
-</div>
+  <section class="products">
+    <div class="section-title">
+      <h2>Featured Pieces</h2>
+      <p>Luxury modest fashion curated for elegance</p>
+    </div>
+
+    <div class="product-grid">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1200&auto=format&fit=crop" alt="Abaya">
+        <div class="card-content">
+          <h3>Sage Abaya</h3>
+          <p class="price">₹2499</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1200&auto=format&fit=crop" alt="Hijab">
+        <div class="card-content">
+          <h3>Powder Blue Hijab</h3>
+          <p class="price">₹699</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200&auto=format&fit=crop" alt="Jilbab">
+        <div class="card-content">
+          <h3>Ivory Jilbab</h3>
+          <p class="price">₹3199</p>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="banner">
+    <h2>Irmas Collection</h2>
+    <p>
+      A signature pastel bridal collection inspired by sisterhood, elegance, and timeless femininity.
+    </p>
+  </section>
+
+  <footer>
+    © 2026 Hibatty Store • Luxury Modest Fashion
+  </footer>
 
 </body>
 </html>
